@@ -1,8 +1,8 @@
 {
   "newBotUrl": "https://chat-widget-googleperf-staging.bot-got-it.tech/bots/new",
   "homeBotUrl": "https://chat-widget-googleperf-staging.bot-got-it.tech/home",
-  "whitelisted_email": "engineering@bot-it.ai",
-  "whitelisted_password": "3PY4TaRJYS",
+  "whitelisted_email": "",
+  "whitelisted_password": "",
   "non_whitelisted_email": "nfttestgm1@gmail.com",
   "non_whitelisted_password": "123456",
   "body": "Fixtures are a great way to mock data for responses to routes",
