@@ -1,0 +1,13 @@
+{
+  "newBotUrl": "https://chat-widget-googleperf-staging.bot-got-it.tech/bots/new",
+  "homeBotUrl": "https://chat-widget-googleperf-staging.bot-got-it.tech/home",
+  "whitelisted_email": "engineering@bot-it.ai",
+  "whitelisted_password": "3PY4TaRJYS",
+  "non_whitelisted_email": "nfttestgm1@gmail.com",
+  "non_whitelisted_password": "123456",
+  "body": "Fixtures are a great way to mock data for responses to routes",
+  "loginUrl": "https://chat-widget-googleperf-staging.bot-got-it.tech/login",
+  "zendeskShortUrl": "https://gotitapphelp.zendesk.com/hc/en-us/categories/18439470575385-refund-my-money",
+  "wrongPassword":"123456",
+  "loginAPIUrl":"https://questionable-api-googleperf-staging.bot-got-it.tech/sign-in/email"
+}
