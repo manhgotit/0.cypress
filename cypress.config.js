@@ -10,7 +10,7 @@ module.exports = defineConfig({
 
     //4000 by default
     //time, in milliseconds, to wait until most DOM based commands are considered timed out.
-    defaultCommandTimeout: 60000,
+    defaultCommandTimeout: 30000, //30 seconds
 
     //Whether to enable Chromium-based browser's Web Security for same-origin policy and insecure mixed content.
     chromeWebSecurity: false,
@@ -20,8 +20,6 @@ module.exports = defineConfig({
     pageLoadTimeout: 60000,
   },
 });
-
-
 
     //timeout: https://docs.cypress.io/guides/references/configuration#Timeouts
     //https://docs.cypress.io/guides/references/configuration

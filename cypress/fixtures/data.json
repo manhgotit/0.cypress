@@ -1,6 +1,7 @@
 {
   "newBotUrl": "https://chat-widget-googleperf-staging.bot-got-it.tech/bots/new",
   "homeBotUrl": "https://chat-widget-googleperf-staging.bot-got-it.tech/home",
+  "testingBotUrl": "https://chat-widget-googleperf-staging.bot-got-it.tech/bots/gotitapphelp-zendesk-com-categories-18439470575385-refund-my-money-1182",
   "whitelisted_email": "",
   "whitelisted_password": "",
   "non_whitelisted_email": "nfttestgm1@gmail.com",

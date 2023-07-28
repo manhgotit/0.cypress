@@ -15,6 +15,8 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
+import { faker } from '@faker-js/faker';
+
 Cypress.Commands.add('loginByAPI_full', (email, password) => {
     cy.session([email, password], () => {
         //step 1: send request to get token
