@@ -1,14 +1,21 @@
 {
   "newBotUrl": "https://chat-widget-googleperf-staging.bot-got-it.tech/bots/new",
+  "newBotUrl_ArticleBotStaging": "https://articlebot.got-it.ai/bots/new",
   "homeBotUrl": "https://chat-widget-googleperf-staging.bot-got-it.tech/home",
-  "testingBotUrl": "https://chat-widget-googleperf-staging.bot-got-it.tech/bots/gotitapphelp-zendesk-com-categories-18439470575385-refund-my-money-1182",
-  "whitelisted_email": "",
-  "whitelisted_password": "",
+  "homeBotUrl_ArticleBotStaging": "https://articlebot.got-it.ai/home",
+  "testingBotUrl": "https://chat-widget-googleperf-staging.bot-got-it.tech/bots/gotitapphelp-zendesk-com-categories-18439470575385-refund-my-money-1196",
+  "testingBotUrl_ArticleBotStaging": "https://articlebot.got-it.ai/bots/gotitapphelp-zendesk-com-categories-18439470575385-refund-my-money-707",
+  "whitelisted_email": "engineering@bot-it.ai",
+  "whitelisted_password": "3PY4TaRJYS",
   "non_whitelisted_email": "nfttestgm1@gmail.com",
   "non_whitelisted_password": "123456",
   "body": "Fixtures are a great way to mock data for responses to routes",
   "loginUrl": "https://chat-widget-googleperf-staging.bot-got-it.tech/login",
+  "loginUrl_ArticleBotStaging": "https://articlebot.got-it.ai/login",
   "zendeskShortUrl": "https://gotitapphelp.zendesk.com/hc/en-us/categories/18439470575385-refund-my-money",
   "wrongPassword":"123456",
-  "loginAPIUrl":"https://questionable-api-googleperf-staging.bot-got-it.tech/sign-in/email"
+  "loginAPIUrl":"https://questionable-api-googleperf-staging.bot-got-it.tech/sign-in/email",
+  "loginAPIUrl_ArticleBotStaging":"https://questionable-api-articlebot-staging.bot-got-it.tech/sign-in/email",
+  "chatURL":"",
+  "maxNumberToStartOver":2
 }

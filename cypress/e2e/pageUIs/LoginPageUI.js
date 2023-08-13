@@ -5,6 +5,9 @@ const EMAIL_INPUT = '#email';
 const PASSWORD_INPUT = '#password';
 const SIGN_IN_BUTTON = '.u-marginTopMedium';
 const SIGN_IN_GOOGLE_BUTTON = `button[data-testid='google-button-sign-in']`;
+// const ERROR_MESSAGE_1 = `div[role='alert']`;
+const ERROR_MESSAGE_1 = `div[class='FormGroup u-block u-marginBottomSmall u-marginBottomSmall'] div[role='alert']`;
+const ERROR_MESSAGE_2 = `div[class='FormGroup u-block u-marginBottomSmall u-marginBottomMedium'] div[role='alert']`;
 
 //Step 2: Create a class to store all elements on each page, and export it to use in test cases level
 export default class LoginPageUI {
@@ -27,5 +30,11 @@ export default class LoginPageUI {
     }
     get signInGoogleButton() {
         return cy.get(SIGN_IN_GOOGLE_BUTTON);
+    }
+    get errorMessage1() {
+        return cy.get(ERROR_MESSAGE_1);
+    }
+    get errorMessage2() {
+        return cy.get(ERROR_MESSAGE_2);
     }
 }

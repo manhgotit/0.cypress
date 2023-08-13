@@ -1,0 +1,37 @@
+[
+  {
+    "email": "manhtt",
+    "password": "\"\"",
+    "errorMessage1": "You have entered an invalid email address. Please try again."
+  },
+  {
+    "email": "\"\"",
+    "password": "",
+    "errorMessage1": "You have entered an invalid email address. Please try again.",
+    "errorMessage2": "Please enter your password."
+  },
+  {
+    "email": "\"\"",
+    "password": "\"\"",
+    "errorMessage1": "You have entered an invalid email address. Please try again.",
+    "errorMessage2": "Please enter your password."
+  },
+  {
+    "email": "null",
+    "password": "null",
+    "errorMessage1": "You have entered an invalid email address. Please try again.",
+    "errorMessage2": "Please enter your password."
+  },
+  {
+    "email": "manhtt@tiktok",
+    "password": "\"\"",
+    "errorMessage1": "You have entered an invalid email address. Please try again.",
+    "errorMessage2": "Please enter your password."
+  },
+  {
+    "email": "manhtt@demo.vn",
+    "password": "Han123",
+    "errorMessage1": "",
+    "errorMessage2": ""
+  }
+]
