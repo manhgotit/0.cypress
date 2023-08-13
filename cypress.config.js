@@ -38,8 +38,9 @@ async function setupNodeEvents(on, config) {
 module.exports = defineConfig({
   // chromeWebSecurity: false,
   e2e: {
-    //switch on/off POM and BDD
+    //switch on/off POM and BDD by enable/disable this specPattern
     specPattern: "**/*.feature",
+    
     setupNodeEvents,
     // projectId: "SHiring",
     defaultCommandTimeout: 30000,
@@ -48,31 +49,3 @@ module.exports = defineConfig({
     // baseUrl: "https://app.shiring.rework.vn",
   },
 });
-
-
-
-
-// module.exports = defineConfig({
-//   e2e: {
-//     setupNodeEvents(on, config) {      
-//       // implement node event listeners here
-//     },
-//     //4000 by default
-//     //time, in milliseconds, to wait until most DOM based commands are considered timed out.
-//     defaultCommandTimeout: 60000, //30 seconds
-
-//     //enable "record and playback" feature
-//     experimentalStudio: true,
-
-//     //Whether to enable Chromium-based browser's Web Security for same-origin policy and insecure mixed content.
-//     chromeWebSecurity: false,
-
-//     //60000 by default
-//     //time, in milliseconds, to wait for page transition events or cy.visit(), cy.go(), cy.reload() commands to fire their page load events.
-//     pageLoadTimeout: 60000,
-//   },
-// });
-
-    //timeout: https://docs.cypress.io/guides/references/configuration#Timeouts
-    //https://docs.cypress.io/guides/references/configuration
-    // baseUrl: "",

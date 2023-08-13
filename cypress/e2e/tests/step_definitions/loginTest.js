@@ -4,17 +4,6 @@ import { Before, After, Given, When, And, Then } from "@badeball/cypress-cucumbe
 import LoginPageUI from '../../pageUIs/LoginPageUI';
 const loginPageUI = new LoginPageUI();
 
-beforeEach(function () {
-  //way 1: data Global - define in before hook and use in all TCs by using this.data
-  cy.fixture('data').then(function (data) {
-    this.data = data;
-  })
-  cy.fixture('invalidLogin').then((invalidLogin) => {
-    this.invalidLogin = invalidLogin
-  })
-
-})
-
 Given(`I visit the login page`, function () {
   //way 1: use data global defined in before hook using this.data....
   cy.visit(this.data.loginUrl_ArticleBotStaging)
