@@ -39,7 +39,7 @@ module.exports = defineConfig({
   // chromeWebSecurity: false,
   e2e: {
     //switch on/off POM and BDD by enable/disable this specPattern
-    specPattern: "**/*.feature",
+    // specPattern: "**/*.feature",
     
     setupNodeEvents,
     // projectId: "SHiring",

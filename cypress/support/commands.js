@@ -57,23 +57,35 @@ Cypress.Commands.add('loginByUI', (url, email, password) => {
 Cypress.Commands.add('loginByAPI', (url, email, password) => {
   cy.session([email, password], () => {
     //step 1 (mandatory): send request to get token
+    //create session - new M3 release
     cy.request({
-      url: url,
+      url: "https://questionable-api-googleperf-staging.bot-got-it.tech/sessions",
       method: 'POST',
       headers: {
         contentType: "application/json",
-      },
-      body: { "email": email, "password": password }
+      }
+    }).then(res1 => {
+      const fe_session_id = res1.body.id
+      cy.request({
+        url: url,
+        method: 'POST',
+        headers: {
+          contentType: "application/json",
+          "X-Session-Id": fe_session_id
+        },
+        body: { "email": email, "password": password }
 
-      //step 2 (mandatory): then save accessToken to local storage of site to login successfully
-    }).then(res => {
-      window.localStorage.setItem('questionable-portal.demo.demo-auth', `{"accessToken":"${res.body.access_token}"}`);
+        //step 2 (mandatory): then save accessToken to local storage of site to login successfully
+      }).then(res2 => {
+        window.localStorage.setItem('questionable-portal.demo.demo-auth', `{"accessToken":"${res2.body.access_token}"}`);
+        window.localStorage.setItem('questionable-portal.demo.sessionId', `"${fe_session_id}"`);
 
-      //step 3 (optional): store authorization in dataFake file in fixtures
-      const filename1 = 'cypress/fixtures/dataFake.json'
-      const authorization = `Bearer ${res.body.access_token}`;
-      cy.writeFile(filename1, {
-        'authorization': authorization
+        //step 3 (optional): store authorization in dataFake file in fixtures
+        const filename1 = 'cypress/fixtures/dataFake.json'
+        const authorization = `Bearer ${res2.body.access_token}`;
+        cy.writeFile(filename1, {
+          'authorization': authorization
+        })
       })
     })
   })
@@ -264,8 +276,7 @@ Cypress.Commands.add("customType", (elmCSS) => {
   cy.get(elmCSS).clear().type('abcbajsajlallaf')
   cy.get(elmCSS).clear().type('12345')
   cy.get(elmCSS).clear().type('!@#$%^&*()_+')
-  if(cy.get(elmCSS).type('5000 words'))
-  {
+  if (cy.get(elmCSS).type('5000 words')) {
     // error appears here
   }
 })

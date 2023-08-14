@@ -1,74 +1,44 @@
-//step 1: import LoginPageUI, HomePageUI
 import LoginPageUI from '../../pageUIs/LoginPageUI';
 import HomePageUI from '../../pageUIs/HomePageUI';
 import NewBotPage from '../../pageUIs/NewBotPage';
 import ChatPageUI from '../../pageUIs/ChatPageUI';
 // import { it } from '@faker-js/faker';
 
-//step 2: create a new instance of LoginPageUI, HomePageUI class
-//store it in a variable and use it in test cases
 const loginPageUI = new LoginPageUI();
 const homePageUI = new HomePageUI();
 const newBotPage = new NewBotPage();
 const chatPageUI = new ChatPageUI();
 
-//beforeEach - run before each test case
-
-//step 3: write test suite, starting with describe
-describe.skip('Test Suite 1', function () {
-    //step 4: set up beforeEach() to load data from fixture
-    before(function () {
+describe('Test Suite 1', function () {
+    beforeEach(function () {
         cy.fixture('data').then(function (data) {
             this.data = data;
-            // Target: Bring 4 first steps and warp in 1 custom method, and call custom method in beforeEach
-            cy.loginByAPI(data.loginAPIUrl_ArticleBotStaging, data.whitelisted_email, data.whitelisted_password)
-            // cy.loginByUI(data.loginUrl_ArticleBotStaging, data.whitelisted_email, data.whitelisted_password)
+            cy.loginByAPI(data.loginUrl, data.whitelisted_email, data.whitelisted_password)
         })
-        cy.generateFakeData()
     })
-
-    //step 5: write test cases, starting with it
-    it.skip('TC1 - login successfully', function () {
-        //5: check visible element Go to bot
+    it('TC1 - create bot sucessfully', function () {
         cy.visit(this.data.homeBotUrl);
         homePageUI.homePageTitle.should('be.visible')
         homePageUI.goToBot.should('be.visible')
 
-    });
-    it.skip('TC2 - create bot sucessfully', function () {
-        // //5: check visible element Go to bot
-        cy.visit(this.data.homeBotUrl_ArticleBotStaging);
-        homePageUI.homePageTitle.should('be.visible')
-        homePageUI.goToBot.should('be.visible')
-
-        //6: create bot
-        cy.visit(this.data.newBotUrl_ArticleBotStaging);
-        //At new bot page
-        //7: click button Next
+        cy.visit(this.data.newBotUrl);
         newBotPage.next.click();
-        //8: input Zendesk url
         newBotPage.zendeskUrlInput.type(this.data.zendeskShortUrl);
-        //9: click button Deploy
         newBotPage.deployBot.click();
 
-        //At chat page
-        //10: check bot is created at chatpage
         chatPageUI.contactUs.should('be.visible').and('have.attr', 'style', 'height: 40px;').and('have.text', 'Contact us');
         chatPageUI.logout.should('be.visible');
-
     });
 
-    it.skip('TC3 - send some messages sucessfully', function () {
+    it('TC2 - send some messages sucessfully', function () {
         cy.visit(this.data.testingBotUrl);
 
-        //send first message
         chatPageUI.writeMessage.type("Thanks");
         chatPageUI.sendMessage.click();
         chatPageUI.truthCheckerResult.should('be.visible');
         chatPageUI.showRelatedContentButton.click();
         chatPageUI.articleItem.should('have.length.above', 0);
 
-        //send second message
         chatPageUI.writeMessage.type("Hello");
         chatPageUI.sendMessage.click();
         chatPageUI.showRelatedContentButton.last().click();
@@ -76,7 +46,40 @@ describe.skip('Test Suite 1', function () {
         cy.contains('There are no relevant articles.').should('be.exist')
 
     })
-    it.skip('TC4 - Verify Contact Button successfully', function () {
+
+    it('TC3 - typeRead - local variable', function () {
+        cy.readFile('cypress/fixtures/typeRead.json').then(Shinobi => {
+            for (var index in Shinobi) {
+                cy.visit(this.data.testingBotUrl);
+                cy.get(`[data-testid="composer"]`).clear().type(Shinobi[index].name)
+                cy.get(`[data-testid="send-message-button"]`).click()
+                cy.get(`[data-testid="send-message-loading-icon"]`).should('be.visible')
+            }
+        })
+    })
+
+    it('TC4 - typeRead - global variable in beforeEach', function () {
+        for (var index in this.type) {
+            cy.visit(this.data.testingBotUrl);
+            cy.get(`[data-testid="composer"]`).type(this.type[index].name)
+            cy.get(`[data-testid="send-message-button"]`).click()
+            cy.get(`[data-testid="send-message-loading-icon"]`).should('be.visible')
+        }
+    })
+})
+
+describe.skip('Wait Suite', function () {
+    beforeEach(function () {
+        cy.fixture('data').then(function (data) {
+            this.data = data;
+            cy.loginByAPI(data.loginAPIUrl, data.whitelisted_email, data.whitelisted_password)
+        })
+        cy.fixture('type').then((type) => {
+            this.type = type
+        })
+    })
+
+    it.skip('TC5 - Verify Contact Button successfully', function () {
         /* ==== Generated with Cypress Studio ==== */
         // cy.visit(this.data.abc);
         cy.get().click();
@@ -101,32 +104,21 @@ describe.skip('Test Suite 1', function () {
         /* ==== End Cypress Studio ==== */
     })
 
-    it.skip('TC5 - restart conversation 20 times', function () {
+    it.skip('TC6 - restart conversation 20 times', function () {
         cy.visit(this.data.testingBotUrl_ArticleBotStaging);
 
         startOverAndOver(this.data.maxNumberToStartOver)
     });
+    //step 5: write test cases, starting with it
+    it.skip('TC7 - login successfully', function () {
+        //5: check visible element Go to bot
+        cy.visit(this.data.homeBotUrl);
+        homePageUI.homePageTitle.should('be.visible')
+        homePageUI.goToBot.should('be.visible')
 
+    });
 
-})
-
-describe('Wait Suite', function () {
-    beforeEach(function () {
-        //data Global
-        cy.fixture('data').then(function (data) {
-            this.data = data;
-            // Target: Bring 4 first steps and warp in 1 custom method, and call custom method in beforeEach
-            cy.loginByAPI(data.loginAPIUrl_ArticleBotStaging, data.whitelisted_email, data.whitelisted_password)
-            // cy.loginByUI(data.loginUrl_ArticleBotStaging, data.whitelisted_email, data.whitelisted_password)
-        })
-        cy.generateFakeData()
-
-        cy.fixture('type').then((type) => {
-            this.type = type
-        })
-    })
-
-    it.skip('Stop Generation', function () {
+    it.skip('TC8 - Stop Generation', function () {
         cy.visit(this.data.testingBotUrl_ArticleBotStaging);
 
         //send first message
@@ -139,7 +131,7 @@ describe('Wait Suite', function () {
 
     })
 
-    it.skip('Wait TC', function () {
+    it.skip('TC9 - Wait TC', function () {
         cy.visit(this.data.testingBotUrl_ArticleBotStaging);
 
         chatPageUI.writeMessage.type("Thanks");
@@ -163,12 +155,12 @@ describe('Wait Suite', function () {
 
     });
 
-    it.skip('edit bot', function () {
+    it.skip('TC10 - edit bot', function () {
         cy.visit(`https://articlebot.got-it.ai/bots/gotitapphelp-zendesk-com-categories-18439470575385-refund-my-money-648/edit`);
 
     })
 
-    it.skip('type', function () {
+    it.skip('TC11 - type', function () {
         for (var index in this.type) {
             cy.visit(`https://articlebot.got-it.ai/bots/gotitapphelp-zendesk-com-categories-18439470575385-refund-my-money-648`);
             cy.get(`[data-testid="composer"]`).type(this.type[index].name)
@@ -176,31 +168,4 @@ describe('Wait Suite', function () {
             cy.get(`[data-testid="send-message-loading-icon"]`).should('be.visible')
         }
     })
-
-    it('typeRead', function () {
-        //cach 2: local fixture
-        cy.fixture('dataLocal').then(function (dataLocal) {
-            cy.loginByAPI(dataLocal.loginAPIUrl_ArticleBotStaging, dataLocal.whitelisted_email, dataLocal.whitelisted_password)
-        })
-
-        // //cach 1: local
-        // cy.readFile('cypress/fixtures/typeRead.json').then(Shinobi => {
-        //     for (var index in Shinobi) {
-        //         cy.visit(`https://articlebot.got-it.ai/bots/gotitapphelp-zendesk-com-categories-18439470575385-refund-my-money-707`);
-        //         cy.get(`[data-testid="composer"]`).clear().type(Shinobi[index].name)
-        //         cy.get(`[data-testid="send-message-button"]`).click()
-        //         cy.get(`[data-testid="send-message-loading-icon"]`).should('be.visible')
-        //     }
-        // })
-
-        // //cach 2: global
-        // for (var index in this.type) {
-        //     // cy.log(this.type[index].name)
-        //     cy.visit(`https://articlebot.got-it.ai/bots/gotitapphelp-zendesk-com-categories-18439470575385-refund-my-money-648`);
-        //     cy.get(`[data-testid="composer"]`).type(this.type[index].name)
-        //     cy.get(`[data-testid="send-message-button"]`).click()
-        //     cy.get(`[data-testid="send-message-loading-icon"]`).should('be.visible')
-        // }
-    })
-
 })

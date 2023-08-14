@@ -1,7 +1,7 @@
 const CONTACT_US = '[data-testid="button-contact-us"]';
 const LOG_OUT = '[data-testid="logout-button"]';
 const WRITE_MESSAGE = '[data-testid="composer"]';
-const SEND_MESSAGE = `[data-testid="send-message-button"] > svg`;
+const SEND_MESSAGE = `[data-testid="send-message-button"]`;
 const TRUTH_CHECKER_RESULT = `.u-paddingLeftExtraSmall`;
 const SHOW_RELATED_CONTENT_BUTTON = `[data-testid="show-related-content-button"]`;
 const RELEVANT_ARTICLES = `h2`;
